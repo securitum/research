@@ -1,0 +1,34 @@
+<!doctype html><meta charset=utf-8>
+
+<script>
+	
+	async function scanPort(host, port) {	
+		const portal = document.createElement('portal');
+		document.body.appendChild(portal);
+		let onloadCounter = 0;
+		portal.onload = () => {
+			onloadCounter++;
+		}
+		
+		portal.src = `http://${host}:${port}?${Math.random()}`;
+		
+		await sleep(1000);
+		portal.remove();
+		if (onloadCounter === 0) {
+			return `onload didn't fire in 1s --> port ${port} is probably FILTERED`;
+		} else if (onloadCounter === 1) {
+			return `onload fired once --> port ${port} is probably HTTP and is OPEN`;
+		}
+		else if (onloadCounter % 2 === 0) {
+			return `onload fired ${onloadCounter} times --> port ${port} is OPEN`;
+		} else {
+			return `onload fired ${onloadCounter} times --> port ${port} is CLOSED`;;
+		}
+		
+	}
+	
+	function sleep(ms) {
+		return new Promise(r => setTimeout(r, ms));
+	}
+	
+</script>

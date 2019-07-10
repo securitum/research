@@ -1,0 +1,32 @@
+<button onclick=tryDownload()>Try download a single file using redirect</button>
+<button onclick=tryMany()>Try download many files using redirects</button><br>
+<button onclick=tryDownloadPortal()>Try download a single file using portal</button>
+<button onclick=tryManyPortal()>Try download many files using portal</button><br>
+
+<script>
+	function tryDownload() {
+		location = 'download.php';
+	}
+	
+	function tryMany() {
+		setInterval(tryDownload, 200);
+	}
+	
+	function tryDownloadPortal() {
+		const url = 'download.php';
+		
+		const portal = document.createElement('portal');
+		portal.src = url;
+		portal.onload = () => {
+			portal.onload = null;
+			portal.remove();
+		}
+		document.body.appendChild(portal);
+		
+	}
+	
+	function tryManyPortal() {
+		setInterval(tryDownloadPortal, 200);
+	}
+	
+</script>

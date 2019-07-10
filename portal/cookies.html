@@ -1,0 +1,23 @@
+<body><script>
+	// first we make sure that cookies are set
+	
+	// to test this example, please make sure that you open this URL
+	// in browser via http://localhost:12345
+	const url = 'http://127.0.0.1:12345/cookies.php';
+	const portal = document.createElement('portal'); 
+	portal.src = url + '?set';
+	portal.style.border = 'inset';
+	portal.onload = () => {
+		// when cookies are set, we open portal
+		// and iframe to see a comparison
+		// if SameSite cookies are being sent
+		portal.onload = null;
+		portal.remove();
+		
+		document.body.innerHTML = `iframe:<br><iframe src=${url}></iframe><br>
+		portal:<br><portal style=border:inset src=${url}></portal>`;
+	}
+	
+	document.body.appendChild(portal);
+	
+</script>

@@ -1,0 +1,39 @@
+<script>
+	function timing(url) {
+		const portal = document.createElement('portal');
+		portal.src = url;
+		const startTime = +new Date;
+		portal.onload = () => {
+			alert(`${url} loaded for ${new Date - startTime}ms`);
+		}
+		document.body.appendChild(portal);
+	}
+	
+	async function isBlockedByXSSAuditor(url) {
+		const portal = document.createElement('portal');
+		portal.src = url;
+		let onloadCount = 0;
+		portal.onload = () => onloadCount++;
+		
+		document.body.appendChild(portal);
+		
+		await sleep(2000);
+		
+		return onloadCount > 1;
+		
+	}
+	
+	function sleep(ms) {
+		return new Promise(r => setTimeout(r, ms));
+	}
+	
+	function check(url) {
+		const portal = document.createElement('portal');
+		portal.src = url;
+		portal.setAttribute('style', 'width:300px;height:400px');
+		portal.onload = () => console.log('onload');
+		document.body.appendChild(portal);
+		
+	}
+	
+</script>

