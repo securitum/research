@@ -1,7 +1,9 @@
-= Info =
+# Info
+
 This folder contains various proof-of-concepts accompanying security research about <portal> element. You can find more information and the research itself on Securitum Research blog: https://research.securitum.com/TODO.
 	
-= Getting started =
+# Getting started
+
 Some of the examples require PHP code to run. So begin with running:
 
     php -S 127.0.0.1:12345 
