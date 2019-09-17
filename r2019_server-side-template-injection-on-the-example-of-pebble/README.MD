@@ -13,7 +13,7 @@ docker-compose up
 
 3. The application runs on http://localhost:4567.
 
-![Screenshot](/screenshot.png)
+![Screenshot](./screenshot.png)
 
 
 You can also specify the version of Pebble to run with `PEBBLE_VERSION` environmental variable. Examples:
