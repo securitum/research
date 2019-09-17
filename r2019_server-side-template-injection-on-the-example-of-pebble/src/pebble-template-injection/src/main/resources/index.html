@@ -1,0 +1,27 @@
+<!doctype html><meta charset=utf-8><style>* { font-size: 16px;} </style>
+<form action=javascript:processTemplate(input.value)>
+    Enter a template below that will get processed by Pebble.<br>
+    <textarea autofocus style=width:700px;height:150px id=input>Hello {{ 6 - 4 }}!</textarea><br>
+    <button>Process [CMD/CTRL+ENTER]</button>
+</form>
+<hr>
+<pre id=out></pre>
+<script>
+    async function processTemplate(template) {
+        const f = await fetch('/ssti', {
+            method: 'POST',
+            body: new URLSearchParams({ template }),
+        });
+        const response = await f.text();
+        out.textContent = response;
+    }
+    
+    document.body.addEventListener('keydown', ev => {
+        if (ev.keyCode === 13 && ev.metaKey) {
+            document.forms[0].submit();
+        } 
+    });
+    
+    document.forms[0].submit();
+    
+</script>

@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.securitum.pebbleinjection</groupId>
+  <artifactId>pebble-template-injection</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>pebble-template-injection</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+   <!-- <dependency>
+    	<groupId>io.pebbletemplates</groupId>
+    	<artifactId>pebble</artifactId>
+    	<version>3.1.0</version>
+    </dependency>-->
+    <dependency>
+        <groupId>com.sparkjava</groupId>
+        <artifactId>spark-core</artifactId>
+        <version>2.8.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.21</version>
+    </dependency>
+	<dependency>
+	    <groupId>com.github.PebbleTemplates</groupId>
+	    <artifactId>pebble</artifactId>
+	    <version>PEBBLE_VERSION</version>
+	</dependency>
+  </dependencies>
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+  <properties>
+      <maven.compiler.source>1.10</maven.compiler.source>
+      <maven.compiler.target>1.10</maven.compiler.target>
+    </properties>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                    <configuration>
+                        <mainClass>com.securitum.pebbleinjection.App</mainClass>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+
+</project>

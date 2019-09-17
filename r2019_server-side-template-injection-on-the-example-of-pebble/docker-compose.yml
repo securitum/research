@@ -1,0 +1,15 @@
+version: '3'
+services:
+  pebble:
+    user: '31337:31337'
+    privileged: false
+    build: .
+    ports:
+      - '4567:4567'
+    environment:
+      - 'MAVEN_CONFIG=/tmp/maven/.m2'
+    command: >
+      bash -c '
+        sed "s#PEBBLE_VERSION#${PEBBLE_VERSION:-3.1.0}#" -i /src/pebble-template-injection/pom.xml
+        mvn -Duser.home=/tmp/maven -f /src/pebble-template-injection/pom.xml clean compile exec:java
+      '
