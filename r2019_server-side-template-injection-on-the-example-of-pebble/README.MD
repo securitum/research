@@ -30,4 +30,3 @@ PEBBLE_VERSION=3.0.8 docker-compose up
 PEBBLE_VERSION=master-SNAPSHOT docker-compose up
 ```
 
-https://github.com/securitum/research/tree/master/r2019_server-side-template-injection-on-the-example-of-pebble
