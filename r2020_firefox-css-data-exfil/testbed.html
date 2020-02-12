@@ -1,0 +1,40 @@
+<!doctype html><meta charset=utf-8>
+<style>
+    textarea, iframe {
+        width:100%;
+        height: 150px;
+    }
+</style>
+<p>This is a testbed for data exfiltration. Enter some HTML below and it will be injected into a page with <code>CSP: script-src 'none'</code>. The goal is to steal <code>csrftoken</code> from the form. The token is different after every reload so you need to steal it all at once!</p>
+<textarea id=input placeholder="HTML here...">
+    
+</textarea><br>
+<button onclick=update()>Update!</button>
+<hr>
+<iframe id=ifr></iframe>
+<script>
+    const token = () => btoa(Array.from(crypto.getRandomValues(new Uint8Array(72)), c => String.fromCharCode(c)).join(''));
+    const input = document.getElementById('input');
+    const html = input => `<!doctype html><meta charset=utf-8>
+    <meta http-equiv=content-security-policy content="script-src 'none'">
+    <form action=#>
+    <input type=hidden name=csrftoken value="${token()}">
+    Name: <input name=name>
+    <button>Submit!</button>
+    ${input}
+    `;
+
+    document.onkeyup = ev => {
+        if (ev.altKey && ev.keyCode === 13) {
+            update();
+            ev.preventDefault();
+        }
+    };
+    
+    let iframe = document.getElementById('ifr');
+    function update() {
+        iframe.src = `data:text/html,${encodeURIComponent(html(input.value))}`;
+    }
+    
+</script>
+
