@@ -5,7 +5,7 @@
   "main": "pollute.js",
   "dependencies": {
     "acorn": "^7.4.0",
-    "ast-types": "^0.13.3",
+    "ast-types": "^0.16.0",
     "escodegen": "^2.0.0",
     "glob": "^7.1.6",
     "jspath": "^0.4.0",
